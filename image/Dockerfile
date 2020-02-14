@@ -28,5 +28,6 @@ RUN useradd apps \
     && chown -v -R apps:apps /home/apps
 
 COPY bootstrap.sh /
+COPY /folderlocation/sysctl.conf /etc/sysctl.conf
 
 CMD '/bootstrap.sh'
