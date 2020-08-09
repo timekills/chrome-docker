@@ -7,7 +7,12 @@ The Docker image includes a VNC server which provides graphical access to the
 virtual display running in the container.
 
 ## How do I build it?
-Refer to the [building documentation](docs/building).
+mkdir /opt/appdata/chrome
+sudo chown 1000:1000 /opt/appdata/chrome
+cd /opt/appdata/chrome
+wget https://github.com/timekills/chrome-docker/archive/master.zip && unzip master.zip && rm -r master.zip
+cd /opt/appdata/chrome/chrome-docker-master/image/ && sudo docker build -t timekills/chrome-docker .
+sudo docker run -d -p 5900:5900 -e VNC_SERVER_PASSWORD=WhatEverYouWant -e JAVA_OPTS='-Xmx8000M' --user apps --privileged --volume /opt/appdata/chrome:/home/apps --name "chrome" timekills/chrome-docker
 
 ## How do I run it?
 First, start the container and its VNC server:
