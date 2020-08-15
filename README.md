@@ -6,7 +6,7 @@ A Docker image that can run Google Chrome.
 The Docker image includes a VNC server which provides graphical access to the
 virtual display running in the container.
 
-## How do I build it?
+## How do I build and run it?
 mkdir /opt/appdata/chrome
 
 sudo chown 1000:1000 /opt/appdata/chrome
@@ -19,11 +19,8 @@ cd /opt/appdata/chrome/chrome-docker-master/image/ && sudo docker build -t timek
 
 sudo docker run -d -p 5900:5900 -e VNC_SERVER_PASSWORD=WhatEverYouWant -e JAVA_OPTS='-Xmx8000M' --user apps --privileged --volume /opt/appdata/chrome:/home/apps --name "chrome" timekills/chrome-docker
 
-## How do I run it?
-First, start the container and its VNC server:
-```
-docker run -p 5900:5900 --name chrome --user apps --privileged <image-name>
-```
+## How do I access it?
+Use whatever VNC client you wish, on the default port (5900)
 
 **Note**: The macOS VNC client will not be able to login unless you set a
 password for the VNC server. The instructions for setting a VNC password can be
